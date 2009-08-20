@@ -1,0 +1,3 @@
+h1. Python Paradox-Wiki (in Ruby)
+
+Contrary to the name - this is a wiki written in Rails. It's just written by the Python Paradox team. Hence the "Python" name. Get it?

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'screen', :media=>'screen, projection' %>
+  <%= stylesheet_link_tag 'print', :media=>'print' %>
+  <!--[if lt IE 8]><%= stylesheet_link_tag 'ie', :media=>'screen, projection' %><![endif]-->
+  <%= stylesheet_link_tag 'global', :media=>'screen, projection' %>
+</head>
+<body>
+
+<div class="container">
+
+<p style="color: green"><%= flash[:notice] %></p>
+<p style="color: red"><%= flash[:error] %></p>
+
+<%= yield %>
+
+</div>
+
+<div class="footer">
+  <p><a href="http://validator.w3.org/check?uri=referer"> <img src="/images/badges/valid.png" alt="Valid HTML 4.01 Strict" height="31" width="88" class="top"></a></p>
+</div>
+
+</body>
+</html>
