@@ -3,6 +3,9 @@ class Article < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   named_scope :published, lambda { |p| { :conditions => { :published => !(p =~ /false/i) } } }
   
+  has_attached_file :upload
+  attr_protected :upload_file_name, :upload_content_type, :upload_file_size
+  
   before_validation :generate_permalink
   validates_presence_of :title, :permalink
   validates_uniqueness_of :title, :permalink
