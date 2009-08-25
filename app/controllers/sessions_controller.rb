@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Welcome #{@session.email}!"
       redirect_to articles_path #root_path
     else
+      @session = User.anonymous
       flash.now[:error] =  "Couldn't locate a user with those credentials"
       render :action => :new
     end

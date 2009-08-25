@@ -1,21 +1,36 @@
-<p>
-  <b>Title:</b>
-  <%=h @article.title %>
-</p>
+<h1><%=h @article.title %></h1>
 
 <p>
-  <b>Body:</b>
   <%=h @article.body %>
 </p>
 
-<p>
-  <b>Published:</b>
-  <%=h @article.published %>
-</p>
-
+<% if !@article.upload.path.blank? %>
 <p>
   <img src="<%=@article.upload.url %>" />
 </p>
+<% end %>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<% form_for(@article, :html => { :multipart => true } ) do |f| %>
+  <%= f.error_messages %>
+
+  <!-- p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p -->
+  <%= f.hidden_field :title %>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.label :upload, 'Upload Image' %><br />
+    <%= f.file_field :upload %>
+  </p>
+  <!-- p>
+    <%= f.label :published %><br />
+    <%= f.check_box :published %>
+  </p -->
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

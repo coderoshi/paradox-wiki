@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
 
   authenticate_by :email
   
+  def editable
+    email != 'anonymous@pythonparadox.com'
+  end
+  
   def self.anonymous
     User.new(:email => 'anonymous@pythonparadox.com', :password => 'anonymous')
   end
