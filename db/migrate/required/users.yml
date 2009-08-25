@@ -1,0 +1,5 @@
+<% include BCrypt %>
+anonymous:
+  id: 1
+  email: anonymous@pythonparadox.com
+  crypted_password: <%= Password.create('anonymous') %>

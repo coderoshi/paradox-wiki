@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :if => :password_required?
 
   authenticate_by :email
+  
+  def self.anonymous
+    User.new(:email => 'anonymous@pythonparadox.com', :password => 'anonymous')
+  end
 end

@@ -39,7 +39,9 @@ module SimplestAuth
 
     def current_user
       @current_user ||= begin
-        if user_class.respond_to?(:find)
+        if current_user_id.nil?
+          anonymous
+        elsif user_class.respond_to?(:find)
           user_class.find(current_user_id)
         else
           user_class.first(:id => current_user_id)
@@ -62,6 +64,12 @@ module SimplestAuth
     
     def self.included(base)
       base.send :helper_method, :current_user, :logged_in?, :authorized? if base.respond_to? :helper_method
+    end
+    
+    def anonymous
+      if user_class.respond_to?(:anonymous)
+        user_class.anonymous
+      end
     end
   end
 end

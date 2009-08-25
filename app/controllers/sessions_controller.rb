@@ -2,8 +2,7 @@ class SessionsController < ApplicationController
   defaults :resource_class => User
   
   def create
-    @session = User.new(params[:user])
-    if User.authenticate(@session.email, @session.password)
+    if @session = User.authenticate(params[:user][:email], params[:user][:password])
       self.current_user = @session
       flash[:notice] = "Welcome #{@session.email}!"
       redirect_to articles_path #root_path
