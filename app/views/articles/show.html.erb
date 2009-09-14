@@ -1,7 +1,7 @@
 <h1><%=h @article.title %></h1>
 
 <p>
-  <%=h @article.body %>
+  <%= @article.body %>
 </p>
 
 <% if !@article.upload.path.blank? %>
@@ -20,7 +20,7 @@
   <%= f.hidden_field :title %>
   <p>
     <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.text_area :body, :class=>'wymeditor' %>
   </p>
   <p>
     <%= f.label :upload, 'Upload Image' %><br />
@@ -31,6 +31,6 @@
     <%= f.check_box :published %>
   </p -->
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Update', :class=>'wymupdate' %>
   </p>
 <% end %>

@@ -1,0 +1,13 @@
+*~
+.DS_Store
+db/schema.rb
+db/*.sqlite*
+config/database.yml
+doc/spec.html
+doc/spec_profile.txt
+log/*
+.gitignore
+public/index.html
+system
+tmp
+.idea
