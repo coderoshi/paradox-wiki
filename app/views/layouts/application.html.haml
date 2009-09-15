@@ -1,19 +1,29 @@
-!!!
+!!! Strict
 %html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
   %head
     %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
     %title= controller.action_name
-    = stylesheet_link_tag 'screen', :media=>'screen, projection'
-    = stylesheet_link_tag 'print', :media=>'print'
-    = stylesheet_link_tag 'global', :media=>'screen, projection'
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     = wym_editor_initialize
+    = javascript_include_tag "application"
   %body
-    .container
-      = current_user.email
-      %p{ :style => "color: green" }= flash[:notice]
-      %p{ :style => "color: red" }= flash[:error]
-      = yield
-    .footer
-      %p
-        %a{ :href => "http://validator.w3.org/check?uri=referer" }
-          %img.top{ :src => "/images/badges/valid.png", :height => "31", :alt => "Valid HTML 4.01 Strict", :width => "88" }
+    #container
+      #header
+        = current_user.email
+        - if flash[:notice]
+          .notice= flash[:notice]
+        - if flash[:error]
+          .error= flash[:error]
+      #sidebar
+        %ul
+          %li= link_to 'Login', login_path
+          %li= link_to 'Logout', logout_path
+      #content
+        = yield
+      #footer
+        %p
+          %a{ :href => "http://validator.w3.org/check?uri=referer" }
+            %img.top{ :src => "/images/badges/valid.png", :height => "31", :alt => "Valid HTML 4.01 Strict", :width => "88" }
