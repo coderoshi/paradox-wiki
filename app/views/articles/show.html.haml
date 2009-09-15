@@ -11,6 +11,6 @@
       /   = f.file_field :upload
       %p= f.submit 'Update', :class=>'wymupdate'
 %p= @article.body
-/ - if @article.upload.path.present?
-/   %p
-/     %img{ :src => @article.upload.url }
+- if @article.upload.path.present?
+  %p
+    %img{ :src => @article.upload.url }
