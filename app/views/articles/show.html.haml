@@ -1,8 +1,4 @@
 %h1= h @article.title
-%p= @article.body
-/ - if @article.upload.path.present?
-/   %p
-/     %img{ :src => @article.upload.url }
 - form_for(@article, :html => { :multipart => true } ) do |f|
   = f.error_messages
   = f.hidden_field :title
@@ -14,3 +10,7 @@
       /   = f.label :upload, 'Upload Image'
       /   = f.file_field :upload
       %p= f.submit 'Update', :class=>'wymupdate'
+%p= @article.body
+/ - if @article.upload.path.present?
+/   %p
+/     %img{ :src => @article.upload.url }
