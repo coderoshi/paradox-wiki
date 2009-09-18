@@ -15,7 +15,7 @@ class Article < ActiveRecord::Base
   end
   
   def generate_permalink
-    self.permalink = Article.build_permalink(title)
+    self.permalink ||= Article.build_permalink(title)
   end
   
   def to_param

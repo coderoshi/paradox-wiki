@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
 protected
   
   def resource
-    @article ||= end_of_association_chain.find_by_permalink(params[:id]) || Article.new(:title => Article.build_permalink(params[:id]))
+    @article ||= end_of_association_chain.find_by_permalink(Article.build_permalink(params[:id])) || Article.new(:title => params[:id])
   end
   
   def collection
