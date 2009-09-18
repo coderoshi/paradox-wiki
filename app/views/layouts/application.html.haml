@@ -12,15 +12,19 @@
   %body
     #container
       #header
-        = current_user.email
         - if flash[:notice]
           .notice= flash[:notice]
         - if flash[:error]
           .error= flash[:error]
       #sidebar
         %ul
-          %li= link_to 'Login', login_path
-          %li= link_to 'Logout', logout_path
+          %li= link_to 'Home', root_path
+          - if current_user
+            %li= link_to current_user.email, edit_user_path(:current)
+            %li= link_to 'Logout', logout_path
+          - else
+            %li= link_to 'Register', new_user_path
+            %li= link_to 'Login', login_path
       #content
         = yield
       #footer

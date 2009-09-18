@@ -1,4 +1,7 @@
 mislav-will_paginate --version 2.3.10 --source http://gems.github.com
+josevalim-inherited_resources --version 0.9.1 --source http://gems.github.com
 thoughtbot-paperclip --source http://gems.github.com
+authlogic --version '>= 2.1.2'
 haml --version '>= 2.2.0'
 chriseppstein-compass --version 0.8.16 --source http://gems.github.com
+justinfrench-formtastic --version 0.2.4 --source http://gems.github.com

@@ -1,15 +1,17 @@
 class User < ActiveRecord::Base
-  include SimplestAuth::Model
-  
-  validates_presence_of :email
-  validates_uniqueness_of :email
-  validates_format_of :email, :with => RFC822::EmailAddress, :message => "must be a valid email address"
-  validates_presence_of :password, :on => :create
-  validates_confirmation_of :password, :if => :password_required?
+  acts_as_authentic
 
-  authenticate_by :email
+  before_destroy do |user|
+    user.errors.add(:editable, "Cannot destory this user") if !user.editable?
+    user.editable?
+  end
+
+  before_save do |user|
+    user.errors.add(:editable, "Cannot edit this user") if !user.editable?
+    user.editable?
+  end
   
-  def editable
+  def editable?
     email != 'anonymous@pythonparadox.com'
   end
   

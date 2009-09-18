@@ -3,3 +3,18 @@
 
 en:
   hello: "Hello world"
+  # activerecord:
+  #   attributes:
+  #     user_session:
+  #       commit: "Login"
+  formtastic:
+    buttons:
+      user_session:
+        commit: "Login"
+    # labels:
+    #   user_session:
+    #     commit_button: "Login"
+    # hints:
+    #   user_session:
+    #     commit: "Login."
+

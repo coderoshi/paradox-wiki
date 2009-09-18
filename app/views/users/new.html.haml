@@ -1,12 +1,4 @@
 %h1 New User
-- form_for(@user) do |f|
+- semantic_form_for @user do |f|
   = f.error_messages
-  %p
-    = f.label :email
-    %br
-    = f.text_field :email
-  %p
-    = f.label :password
-    %br
-    = f.password_field :password
-  %p= f.submit 'Create'
+  = users_form(f)

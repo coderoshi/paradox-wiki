@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 
-  # PUT /users/1
-  # PUT /users/1.xml
+  def create
+    create! { root_url }
+  end
+  
   def update
-    @user = User.find(params[:id])
-
     respond_to do |format|
-      if @user.editable && @user.update_attributes(params[:user])
+      if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
@@ -17,15 +17,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.xml
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy if @user.editable
+protected
 
-    respond_to do |format|
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
-    end
+  def resource
+    @user ||= current_user
   end
 end

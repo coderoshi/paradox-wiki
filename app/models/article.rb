@@ -10,8 +10,12 @@ class Article < ActiveRecord::Base
   validates_presence_of :title, :permalink
   validates_uniqueness_of :title, :permalink
   
+  def self.build_permalink(title)
+    title.to_s.downcase.gsub(/[^a-z0-9]+/i, '-')
+  end
+  
   def generate_permalink
-    self.permalink = title.downcase.gsub(/[^a-z0-9]+/i, '-')
+    self.permalink = Article.build_permalink(title)
   end
   
   def to_param
