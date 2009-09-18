@@ -6,6 +6,6 @@
     %th{:colspan=>2}
   - @articles.each do |article|
     %tr
-      %td= link_to h(article.title), article
+      %td= link_to h(article.title), root_article_path(article)
       %td= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete
 = will_paginate @articles
